@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="vue.js"></script>
+  <script src="vuex.js"></script>
+  <script src="vue-router.js"></script>
+  <script src="axios.js"></script>
+</head>
+<body>
+
+<div id="hdcms">
+  <Lists></Lists>
+  <Footer-Cart></Footer-Cart>
+</div>
+
+<template id="Lists">
+  <div>
+    <table border="1"
+      width="60%"
+      :style="{textAlign: 'center'}">
+      <tr>
+        <th>名称</th>
+        <th>价格</th>
+        <th>数量</th>
+        <th>总价</th>
+        <th>操作</th>
+      </tr>
+      <tr v-for="(v,k) in goods">
+        <td>{{v.name}}</td>
+        <td>
+          <input type="text"
+            v-model="v.price">
+        </td>
+        <td>
+          <input type="text"
+            v-model="v.num">
+        </td>
+        <td>
+          {{v.totalPrice}}
+        </td>
+        <td>
+          <button @click="del(k)">
+            删除
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</template>
+
+<template id="FooterCart">
+  <b>
+    总价：{{countPrice}}
+  </b>
+</template>
+
+</body>
+</html>
+
+<script>
+  let Lists = {
+    template: '#Lists',
+    computed: {
+      goods() {
+        return this.$store.getters.goods;
+      }
+    },
+    methods: {
+      del(k) {
+        // 调用 mutations
+        return this.$store.commit('del', {
+          k
+        })
+      }
+    }
+  }
+
+  let FooterCart = {
+    template: '#FooterCart',
+    computed: {
+      countPrice() {
+        return this.$store.getters.countPrice;
+      },
+    }
+  }
+
+  // 数据共享
+  let store = new Vuex.Store({
+    state: {
+      goods: []
+    },
+    // 获取仓库里面的数据
+    getters: {
+      countPrice(state) {
+        return state.goods.reduce((pre, cur) => pre + cur.price * cur.num, 0)
+      },
+      goods(state) {
+        let goods = state.goods;
+        console.log(goods)
+        goods.forEach(item => {
+          item.totalPrice = item.price * item.num
+        })
+        console.log(goods)
+        return goods
+      }
+    },
+    // 修改仓库里面的数据
+    mutations: {
+      del(state, params) {
+        console.log(params)
+        return state.goods.splice(params.k, 1);
+      },
+      setGoods(state, param) {
+        state.goods = param.goods
+      }
+    },
+    // 用于处理异步
+    actions: {
+      loadGoods(store) {
+        axios.get('goods.php').then(function() {
+          // 调用 setGoods，传入异步数据
+          store.commit('setGoods', {
+            goods: res.data
+          })
+        });
+      }
+    }
+  })
+
+  const app = new Vue({
+    el: '#hdcms',
+    store,
+    mounted() {
+      // 默认触发
+      this.$store.dispatch('loadGoods')
+    },
+    computed: {},
+    components: {
+      Lists,
+      FooterCart
+    }
+  })
+</script>

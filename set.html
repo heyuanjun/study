@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div>
+    div
+  </div>
+</body>
+</html>
+
+<script>
+  let set = new Set();
+  console.log(set)
+
+  set.add(1);
+  set.add(2);
+  set.add('h');
+  console.log(set)
+
+  set.delete('h')
+  console.log(set)
+
+  // set.clear()
+  // console.log(set)
+
+  let res = set.has(1)
+  console.log(res)
+
+  console.log(set.size);
+
+  console.log(set.keys())
+  console.log(set.values())
+
+  let set1 = new Set([1, 2, 3, 5455, 322]);
+  console.log(set1)
+
+  let str = 'qijikongjian';
+  set1 = new Set([...str]);
+  console.log(set1)
+
+  let a = [1, 2, 2, 4, 5, 5, 2, 56];
+  let b = [2, 2, 4, 4, 1, 9, 12, 56];
+
+  // 并集
+  console.log([...a, ...b])
+  let c = new Set([...a, ...b]);
+  console.log([...c])
+
+  // 差集
+  b = new Set(b);
+  let d = new Set(
+    a.filter(item => {
+      return !b.has(item)
+    })
+  )
+
+  console.log(a)
+  console.log(d)
+</script>

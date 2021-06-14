@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+  <hd-child
+    :goods='goods'
+    @sum-a="countPrice">
+  </hd-child>
+  总价：{{totalPrice}}
+</div>
+
+<template id="hdChild">
+  <table border="1" :style="{width: '60%', textAlign: 'center'}">
+    <tr>
+      <th>商品名称</th>
+      <th>商品价格</th>
+      <th>商品数量</th>
+    </tr>
+    <tr v-for="(v,k) in goods">
+      <td>
+        {{v.name}}
+      </td>
+      <td>
+        {{v.price}}
+      </td>
+      <td>
+        <input type="text"
+          @blur="sum()"
+          v-model="v.num">
+      </td>
+    </tr>
+  </table>
+</template>
+</body>
+</html>
+
+<script>
+  // 子组件
+  let hdChild = {
+    template: '#hdChild',
+    // 不做处理时可直接数接收
+    props: [
+      'goods'
+    ],
+    methods: {
+      sum() {
+        this.$emit('sum-a');
+      }
+    }
+  }
+  // 根组件
+  const app = new Vue({
+    el: '#hdcms',
+    components: {hdChild},
+    mounted() {
+      this.countPrice();
+    },
+    data: {
+      totalPrice: 0,
+      goods: [
+        {name: 'iphone', price: 200, num: 1},
+        {name: 'switch', price: 350, num: 1},
+        {name: '阿六', price: 1000, num: 2},
+        {name: '阿团', price: 200, num: 1},
+      ]
+    },
+    methods: {
+      countPrice() {
+        this.totalPrice = this.goods.reduce((pre, cur)=>{
+          return pre + (cur.price * cur.num)
+        },0)
+      }
+    }
+  })
+</script>

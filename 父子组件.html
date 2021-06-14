@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="hdcms">
+    <hd-child
+      name='孤独'
+      :child-lists="lists"
+      :is-show="true">
+      <solt>
+        我是 slot
+      </solt>
+    </hd-child>
+  </div>
+
+  <template id="hdChild">
+    <div>
+      <li v-for="(v,k) in news">
+        {{v.name}}
+        <button @click="del(k)">删除</button>
+      </li>
+      {{name}}
+      {{isShow}}
+      {{childLists.name}}
+    </div>
+  </template>
+</body>
+</html>
+
+<script>
+  // 子组件
+  let hdChild = {
+    template: '#hdChild',
+    props: [
+      'name',
+      'isShow',
+      'childLists'
+    ],
+    data() {
+      return {
+        news: [
+          {
+            name: '新闻',
+            content: '我是内容'
+          },
+          {
+            name: '新闻1',
+            content: '我是内容1'
+          },
+          {
+            name: '新闻2',
+            content: '我是内容2'
+          },
+        ]
+      }
+    },
+    methods: {
+      del(k) {
+        this.news.splice(k, 1)
+      }
+    }
+  }
+  // 根组件
+  const app = new Vue({
+    el: '#hdcms',
+    components: {hdChild},
+    data: {
+      lists: {
+        name: '饿了么'
+      }
+    }
+  })
+</script>

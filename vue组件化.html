@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+  <hd-news></hd-news>
+  <br>
+  <hd-news></hd-news>
+  <br>
+  <hd-news></hd-news>
+  <br>
+  <hd-child></hd-child>
+  <br>
+  <hd-child></hd-child>
+  <br>
+
+
+</div>
+
+<script type="text/x-template" id="hdChild">
+  <div>
+    <li></li>
+  </div>
+</script>
+
+</body>
+</html>
+
+<script>
+  // 全局组件
+  Vue.component('hd-news', {
+    template: '<span>我是全局组件</span>'
+  });
+  // 子组件
+  let hdChild = {
+    data() {
+      return {
+        news: [
+          {
+            name: '新闻',
+            content: '我是内容'
+          },
+          {
+            name: '新闻1',
+            content: '我是内容1'
+          },
+          {
+            name: '新闻2',
+            content: '我是内容2'
+          },
+        ]
+
+
+      }
+    }
+  }
+  // 根组件
+  const app = new Vue({
+    el: '#hdcms',
+    components: {hdChild}
+  })
+</script>
