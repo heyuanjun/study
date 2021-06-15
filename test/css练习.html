@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div></div>
+
+<table border="1"
+  width="60%"
+  cellpadding="0"
+  cellspacing="0">
+  <tr>
+    <th>商品名称</th>
+    <th>商品价格</th>
+    <th>商品数量</th>
+  </tr>
+  <tr>
+    <td>iphone</td>
+    <td>6600</td>
+    <td>11</td>
+  </tr>
+  <tr>
+    <td>iphone</td>
+    <td>6600</td>
+    <td>11</td>
+  </tr>
+  <tr class="font-pink font-blue">
+    <td id="iphone">iphone</td>
+    <td title="td">6600</td>
+    <td title="td1">
+      em
+      <div style="display: none">111</div>
+      <div style="visibility: hidden">222</div>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+<style>
+  /*元素选择器*/
+  tr {
+    border: 1px salmon;
+  }
+
+  /*类选择器*/
+  .font-pink {
+    color: pink;
+  }
+
+  .font-blue {
+    color: blue;
+  }
+
+  /*id 选择器*/
+  #iphone {
+    background: #d9270f;
+  }
+
+  table tr {
+    color: #2be5de;
+  }
+
+  td[title^='td'] {
+    background: #eeeeee;
+  }
+
+  td[title^='td']:hover {
+    background: #d9270f;
+  }
+</style>
