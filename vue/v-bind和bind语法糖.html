@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <!--绑定 class 的 hd 变量-->
+  <h1 v-bind:class="hd">后来的我们</h1>
+  <!--绑定纯字符串-->
+  <h1 v-bind:class="'hd'">后来的我们</h1>
+  <!--使用过多，简化绑定-->
+  <h1 :id="title"></h1>
+  <!--<h1 id="我是标题"></h1>-->
+</div>
+
+</body>
+</html>
+
+<style>
+  .red {
+    color: red;
+  }
+  .hd {
+    color: blue;
+  }
+</style>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      hd: 'red',
+      title: '我是标题'
+    }
+  });
+</script>

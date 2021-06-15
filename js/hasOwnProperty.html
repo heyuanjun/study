@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+    name: '张三',
+    age: '27',
+    money: 1000
+  }
+
+  Object.prototype.color = function () {
+    return 'black'
+  }
+
+  console.log(obj)
+  // 只检测当前对象是否存在该属性
+  console.log(obj.hasOwnProperty('name')) // true
+  console.log(obj.hasOwnProperty('color')) // false
+  console.log('name' in obj) // true in 会检测对象和原型对象上的属性
+  console.log('color' in obj) // true in 会检测对象和原型对象上的属性
+</script>

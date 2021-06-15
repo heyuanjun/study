@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+    name: '张三',
+    age: 28,
+    money: 10000
+  }
+
+  let obj1 = obj; // 同一个指向，同一个内存地址
+  let obj2 = {...obj}; // 将对象打散组成了新的对象，开辟一个新的内存地址
+  console.log(obj1)
+  console.log(obj2)
+
+  obj1.name = '李四';
+  obj2.name = '李一';
+
+  console.log('***************')
+  console.log(obj1)
+  console.log(obj2)
+  console.log(obj)
+  console.log('***************')
+</script>

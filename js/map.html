@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let arr = [
+    {
+      name: '张三',
+      height: 100
+    },
+    {
+      name: '李四',
+      height: 20
+    },
+    {
+      name: '王二',
+      height: 30
+    },
+    {
+      name: '鲁一',
+      height: 40
+    },
+  ]
+
+  // 对每一数组进行二次操作，并返回新的数组，因为是操作的每一个元素，所以是传值
+  let res = arr.map(item => {
+    item.height += 10;
+    return item;
+  })
+
+  console.log(res);
+
+  // 0: {name: "张三", height: 110}
+  // 1: {name: "李四", height: 30}
+  // 2: {name: "王二", height: 40}
+  // 3: {name: "鲁一", height: 50}
+
+  // map 类型
+  let map = new Map();
+  map.set(1, 'value');
+  map.set('1', 'value');
+  let arr1 = ['1'];
+  map.set(arr1, 'value');
+  let obj = {};
+  map.set(obj, 'value');
+  console.log(map)
+
+  console.log([...map])
+
+  map.delete(arr1);
+  console.log(map)
+
+  map.forEach(item => {
+    console.log(item)
+  })
+
+  console.log(map.has(1))
+
+  console.log(map.set(1, 'haha'))
+
+  map.clear()
+  console.log(map)
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+    name: 'edc',
+    age: '27'
+  }
+
+  let {name: tmp, age} = obj;
+  // 注：解构是将第一个参数赋值给第二个参数！！！，如果同名可以省略
+  console.log(tmp) // edc
+  console.log(age) // 27
+
+  // let {age} = obj;
+  // console.log(age) // 27 可以直接定义参数名
+
+  let arr = ['jay', 'edc'];
+  let [a] = arr;
+  console.log(a) // jay
+
+  let [, b] = arr;
+  console.log(b) // edc 索引数组就直接用逗号占位
+</script>

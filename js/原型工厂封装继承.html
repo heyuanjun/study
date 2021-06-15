@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  // 普通实现继承
+  function User(...args) {
+    [this.name, this.age] = args;
+  }
+
+  User.prototype.show = function () {
+    console.log(this.name, this.age)
+  }
+
+  function Admin(...args) {
+    User.apply(this, args)
+  }
+
+  Admin.prototype = Object.create(User.prototype)
+  // 等同于 Admin.prototype.__proto__ 指向 User.prototype
+  console.log(Admin.prototype.__proto__ === User.prototype) // true
+  Admin.prototype.constructor = Admin;
+
+  let admin = new Admin('jay', 30);
+  admin.show(); // jay 30
+
+  // 封装继承方法
+  function extend(sub, sup) {
+    sub.prototype = Object.create(sup.prototype);
+    sub.prototype.constructor = sub;
+  }
+
+  // 测试（使用工厂）
+  function Member(...args) {
+    User.apply(this, args);
+  }
+
+  extend(Member, User);
+  let member = new Member('jj', 30);
+  member.show(); // jj 30
+
+  // 直接使用方法
+  function test(...args) {
+    // Object.create() 方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
+    const obj = Object.create(User.prototype);
+    // 本身 obj.__proto__ 指向 Object.prototype
+    // 49行 等同于 const obj = {}, obj.__proto__ = User.prototype
+    User.apply(obj, args);
+    return obj; // 函数必须要 return
+  }
+
+  let hd = test('andy', 40);
+  hd.show();
+</script>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+    content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  const item = [
+    {name: 'php', price: 30},
+    {name: 'js', price: 100},
+    {name: 'ts', price: 90},
+    {name: 'angular', price: 260},
+    {name: 'vue', price: 170},
+    {name: 'docker', price: 100},
+    {name: 'css', price: 30},
+  ];
+
+  class Class {
+    constructor(...data) {
+      this.model = data;
+    }
+
+    get name() {
+
+    }
+
+    static createBatch(args) {
+      return args.map(item => new this(item))
+    }
+
+    static maxPrice(args) {
+      return args.sort((a, b) => b.price - a.price)[0];
+    }
+
+    static totalPrice(args) {
+      return args.reduce((pre, cur) => pre + cur.price, 0);
+    }
+  }
+
+  let chinese = Class.createBatch(item);
+  console.log(chinese)
+
+  console.log(Class.maxPrice(item)) // {name: "angular", price: 260}
+
+  console.log(Class.totalPrice(item)) // 780
+
+
+</script>

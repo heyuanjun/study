@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  // 计算 5 的阶乘 5*4*3*2*1
+  function multiply(num) {
+    return num === 1 ? 1 : num * multiply(--num);
+  }
+
+  console.log(multiply(5));
+
+  let total = [1, 3, 4, 50, 22, 33, 123].reduce((pre, cur) => pre + cur)
+  console.log(total)
+
+  // 递归求和
+  function sum(...args) {
+    if (args.length === 0) {
+      return 0;
+    }
+    return args.pop() + sum(...args);
+  }
+
+  console.log(sum(1, 2, 44, 22, 10))
+
+  // star
+  function star(num) {
+    if (num === 0) {
+      return '';
+    }
+    document.write(`${'*'.repeat(num)}<br>`);
+    return star(--num)
+  }
+
+  console.log(star(5));
+</script>

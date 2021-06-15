@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--绑定同一个地址-->
+<input type="text"
+  v-model="title">
+<input type="text"
+  v-model="title">
+<h4 v-bind="title">
+  这里也会发生改变
+</h4>
+</body>
+</html>
+
+<script>
+  function View() {
+    let proxy = new Proxy({}, {
+      get(obj, p) {
+        return obj;
+      },
+      set(obj, p, value) {
+        // 2.选定标签设置值，完成绑定
+        document.querySelectorAll("[v-model='title']").forEach(item=>{
+          item.value = value
+        });
+        document.querySelectorAll("[v-bind='title']").forEach(item=>{
+          item.innerHTML = value
+        });
+      }
+    })
+    this.init = function () {
+      const els = document.querySelectorAll("[v-model='title']");
+      els.forEach(item => {
+        item.addEventListener('keyup', function () {
+          // 普通函数指向的是当前函数本身，this 指的是当前的 input
+          console.log(this.value)
+          proxy[this.getAttribute('v-model')] = this.value; // 1.对 proxy 赋值同时触发 set
+        })
+      })
+    }
+  }
+
+  new View().init();
+</script>

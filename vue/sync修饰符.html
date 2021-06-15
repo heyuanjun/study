@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--根组件只有一个-->
+<div id="hdcms">
+  <!--子组件-->
+  <hd-div
+    :list.sync="goods"></hd-div>
+  总价：{{total}}
+</div>
+
+<template id="hdDiv">
+  <table border="1"
+    cellSpacing="0"
+    :style="{width: '60%', textAlign: 'center'}">
+    <tr>
+      <th>商品名称</th>
+      <th>商品价格</th>
+      <th>商品数量</th>
+    </tr>
+    <tr v-for="(v,k) in list">
+      <td>{{v.name}}</td>
+      <td>{{v.price}}</td>
+      <td>
+        <input type="text"
+          v-model="v.num">
+      </td>
+    </tr>
+  </table>
+</template>
+
+</body>
+</html>
+
+<script>
+  // Vue 类来声明全局组件，需在根组件之前定义
+  let hdEl = '<span>我是 span 模块</span>'
+  Vue.component('hdSide', {
+    template: hdEl
+  })
+
+  // 子组件有多个，所以返回 data 方法，每一个都会实例化，是独立的
+  let hdDiv = {
+    template: '#hdDiv',
+    props: {
+      list: {
+        validator(v) {
+          return (typeof v === 'object');
+        },
+      }
+    },
+    data() {
+      return {
+      }
+    },
+  }
+  // 根组件只有一个，所以只返回一个 data 对象，因为只服务于一个组件
+  let app = new Vue({
+    el: '#hdcms',
+    components: {hdDiv},
+    // 等同于
+    // components: {hdDiv: hdDiv},
+    computed: {
+      total() {
+        return this.goods.reduce((pre, cur) => pre + cur.price * cur.num, 0);
+      }
+    },
+    data: {
+      totalPrice: 0,
+      goods: [
+        {name: 'iphone', price: 100, num: 1},
+        {name: 'switch', price: 200, num: 1},
+        {name: 'oldSix', price: 1000, num: 1},
+        {name: 'panda', price: 800, num: 1},
+      ]
+    }
+  });
+</script>

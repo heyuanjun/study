@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let arr = [
+    {
+      name: 'psp',
+      money: 2000,
+    },
+    {
+      name: 'ps5',
+      money: 6000,
+    },
+    {
+      name: 'switch',
+      money: 3000,
+    },
+    {
+      name: 'iphone12',
+      money: 7000,
+    },
+    {
+      name: 'iphone12',
+      money: 7000,
+    }
+  ];
+
+  // 查找最贵的商品
+  let res = arr.reduce(function (pre, cur) {
+    return pre.money > cur.money ? pre : cur;
+  });
+
+  console.log(res);
+
+  // 计算总价
+  let res1 = arr.reduce(function (pre, cur) {
+    return pre += cur.money;
+  }, 0)
+
+  console.log(res1)
+
+  // 获取超过 3000 的商品的所有名称
+  let res2 = arr.reduce(function (pre, cur) {
+    if (cur.money >= 3000) {
+      console.log(pre.push(cur.name));
+    }
+    return pre;
+  }, [])
+
+  console.log(res2)
+
+  // 去除重复的商品
+  let res3 = arr.reduce(function (pre, cur) {
+    let res = pre.find(function (item) {
+      return item.name === cur.name;
+    })
+    if (!res) pre.push(cur);
+    return pre;
+  }, []);
+
+  console.log(res3)
+
+
+  // 数组去重
+  let arr1 = [1, 2, 2, 3, 4, 3, 5, 3, 2, 2, 2, 2];
+  let res4 = arr1.reduce(function (pre, cur) {
+    if (!pre.includes(cur)) {
+      pre.push(cur);
+    }
+    return pre;
+  }, [])
+
+  console.log(res4)
+</script>

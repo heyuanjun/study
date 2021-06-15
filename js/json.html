@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+    name: 'oldSix',
+    age: '7',
+    color: 'black'
+  }
+
+  console.log(typeof obj); // object 这是一个对象，注意 key
+
+  console.log(JSON.stringify(obj, null, 2)); // string 类型
+  //  {
+  //   "name": "oldSix",
+  //   "age": "7",
+  //   "color": "black"
+  //  }
+
+  let arr = [
+    {name: 'oldSix'}
+  ]
+  console.log(JSON.stringify(arr, null, 2)); // string 类型
+  // [
+  //   {
+  //     "name": "oldSix"
+  //   }
+  // ]
+
+  let obj1 = {
+    name: 'oldSix',
+    age: '7',
+    info: {
+      color: 'black'
+    }
+  }
+
+  console.log(JSON.stringify(obj1, ['name'], 2)); // 表示保留 name 属性，空两格
+  // {
+  //   "name": "oldSix"
+  // }
+
+  let str = JSON.stringify(obj1, null, 2);
+  console.log(JSON.parse(str));
+  // {name: "oldSix", age: "7", info: {…}}
+
+  JSON.parse(str, (k, v)=>{
+    console.log(k, v) // name oldSix...
+  })
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+
+<style>
+  .hd1 {
+    color: red;
+  }
+
+  .hd2 {
+    color: green;
+  }
+</style>
+
+<div id="app">
+  <!--表达式在变量中使用-->
+  {{n+4}}
+  <!--表达式也可以在类中使用-->
+  <h1 :class="'hd' + n">蝙蝠侠</h1>
+  <input type="text"
+    v-model="n">
+  <br>
+  <input type="radio"
+    v-model="n"
+    value="1">
+  <input type="radio"
+    v-model="n"
+    value="2">
+</div>
+
+</body>
+</html>
+
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      n: 3
+    }
+  })
+</script>

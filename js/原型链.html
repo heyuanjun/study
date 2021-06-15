@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+    content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  function Singer(name, age) {
+    this.name = name;
+    this.age = age;
+    this.sing = function () {
+      return "R&B 歌手"
+    }
+  }
+
+  let jay = new Singer('周杰伦', 30);
+  let jj = new Singer('林俊杰', 30);
+
+  console.log(jay.age === jj.age) // true
+
+  // 测试发现，两个 sing 地址并不相等，因为他们在内存中存放的地址是不相同的
+  console.log(jay.sing === jj.sing) // false
+
+  console.log('********************************************')
+
+  Singer.prototype.star = function () {
+    return "四大天王"
+  }
+
+  let ldh = new Singer('刘德华', 40);
+  let zxy = new Singer('张学友', 40);
+  // [结论] 构造函数中存储共享属性，原型对象中存储共享方法
+
+  console.log(ldh.star === zxy.star) // true
+  console.log(ldh.__proto__ === Singer.prototype); // true
+  // 每一个对象都有一个系统自动创建的原型，这个属性叫做对象原型（__proto__）
+  // __proto__ 不能做具体赋值，它只能指向构造函数的原型对象，也就是用来访问原型
+  // 查找规则：先查找自身，自身没有，通过 __proto__ 去查找构造函数的原型对象（prototype）
+  // 这里 ldh 没有 star 方法，但是通过 __proto__ 指向去找到了 Singer 的 prototype 中有 star
+
+  console.log('********************************************')
+  console.dir(ldh.__proto__) // 对象原型有 constructor 指向构造函数本身
+  console.dir(Singer.prototype) // 原型对象 constructor 指向构造函数本身
+  console.log(ldh.__proto__.constructor === Singer.prototype.constructor) // true
+  //  [结论] constructor 用来记录该对象引用于哪个构造函数，它可以让原型对象重新指回构造函数
+
+  // constructor 用法举例，手动指回
+  // 当有多个共享方法的时候，我们需要一个一个添加，此时代码会变的不够优雅
+  Singer.prototype.height = function () {
+    return "1.8米"
+  }
+  Singer.prototype.weight = function () {
+    return "70kg"
+  }
+  // 优化以上代码，使用对象方式存储
+  Singer.prototype = {
+    // 当 prototype 直接等于一个对象，那么原型对象中的 constructor 属性就被覆盖了，
+    // 此时手动指向为 Singer 即可
+    constructor: Singer,
+    height: function () {
+      return "1.8米"
+    },
+    weight: function () {
+      return "70kg"
+    }
+  }
+
+  // 手动设置原型对象 hd -> parent
+  let hd = {}
+  let parent = {}
+  console.log(parent.isPrototypeOf(hd)) // false
+  Object.setPrototypeOf(hd, parent); // 类似 hd.__proto__ 继承于 parent.__proto__
+  console.log(parent.isPrototypeOf(hd)) // true isPrototypeOf 检测 parent 是否是 hd 的原型对象
+  console.dir(hd.__proto__.__proto__ === Object.prototype) // true
+  let con = Object.getPrototypeOf(hd).constructor; // 获取 hd 的构造函数
+  let con1 = hd.__proto__.constructor;
+  console.log(con === con1) // true getPrototypeOf 就是获取对象的原型，也就是 __proto__
+
+  console.log(hd instanceof Object) // true
+</script>

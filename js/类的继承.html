@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  class Common {
+    constructor(name) {
+      this.name = name;
+    }
+    show() {
+      return '我是 Common';
+    }
+  }
+
+  class User extends Common {
+    constructor() {
+      super('jay') // 就是调用父类的构造函数
+    }
+    show() {
+      return '我是 User';
+    }
+    show1() {
+      return super.show() + ' 我是 User'; // 可以使用 super 来调用父类的方法
+    }
+  }
+
+  let hd = new User()
+  console.log(hd) // User {name: "jay"}
+  console.log(hd.show()) // 我是 User
+  console.log(hd.show1()) // 我是 Common 我是 User
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  const hd = {
+    name: 'oldSix'
+  }
+
+  // 代理 hd
+  const proxy = new Proxy(hd, {
+    get(obj, property) {
+      // return obj; // {name: "oldSix"}
+      return obj[property]; // oldSix
+    },
+    set(obj, key, value) {
+      return obj[key] = value;
+    }
+  })
+
+  console.log(proxy.name)
+  proxy.name = 'panda';
+  console.log(proxy.name)
+
+  // 代理方法
+  function f(num) {
+    return  num === 1 ? 1 : num * f(num - 1);
+  }
+
+  const proxyF = new Proxy(f, {
+    apply(func, thisArg, argArray) {
+      console.time();
+      func.apply(this, argArray); // apply 第二个参数为数组！！！
+      console.timeEnd();
+    }
+  })
+
+  // console.log(proxyF.apply(2, ['six'])); // thisArg = 2, argArray = ['six']
+  proxyF.apply({}, [1000]);
+</script>

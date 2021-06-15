@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <!--双大括号表示 mustache 语法-->
+  <li v-for="(v,k) in comments">
+    {{v.id}} - {{v.content}} <button v-on:click="remove(k)">删除</button>
+  </li>
+  <textarea v-model="text">
+    {{text}}
+  </textarea><br>
+  <button v-on:click="push">发表到最后</button>
+  <button v-on:click="unshift">发表到前边</button>
+  <button v-on:click="shift">删除第一条</button>
+  <button v-on:click="pop">删除最后一条</button><br>
+  <button v-on:click="common('end')">发表到最后</button>
+  <button v-on:click="common('first')">发表到前边</button>
+  <button v-on:click="common('shift')">删除第一条</button>
+  <button v-on:click="common('pop')">删除最后一条</button><br>
+  <button v-on:click="sort('true')">正序</button>
+  <button v-on:click="sort('false')">倒序</button>
+  <input type="text" v-model="search_content" v-on:keyup.enter="search"> 搜索
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    computed: {
+      comLen() {
+        return this.comments.length + 1;
+      }
+    },
+    data: {
+      comments: [
+        {id: 1, content: 'hello'},
+        {id: 2, content: '你好你好你好'},
+        {id: 9, content: '你好你好你好'},
+        {id: 4, content: '你好你好你好'},
+        {id: 5, content: '你好你好你好'}
+      ],
+      text: '',
+      search_content: ''
+    },
+    methods: {
+      // 变异方法是直接对 data 里面的数据进行操作
+      push() {
+        console.log(this.comLen)
+        this.comments.push({id: this.comLen, content: this.text})
+        this.text = ''
+      },
+      // 等同于
+      // push = function () {
+      //   this.comments.push({name: 'hd', content: this.text})
+      // }
+      unshift() {
+        this.comments.unshift({id: 0, content: this.text})
+        this.text = ''
+      },
+      shift() {
+        this.comments.shift()
+        this.text = ''
+      },
+      pop() {
+        this.comments.pop()
+        this.text = ''
+      },
+      remove(k) {
+        console.log(k)
+        this.comments.splice(k, 1);
+      },
+      common(type) {
+        let com = this.comments;
+        switch (type) {
+          case 'first':
+            com.unshift({id: 0, content: this.text});
+            this.text = '';
+            break;
+          case 'end':
+            com.push({id: this.comLen, content: this.text});
+            this.text = '';
+            break;
+          case 'shift':
+            com.shift();
+            this.text = '';
+            break;
+          case 'pop':
+            com.pop();
+            this.text = '';
+            break;
+        }
+      },
+      sort(type) {
+        switch (type) {
+          case 'true':
+            this.comments.sort(function (a, b) {
+              return a.id - b.id;
+            })
+            break;
+          case 'false':
+            this.comments.sort((a, b) => {
+              return b.id - a.id;
+            })
+            break;
+        }
+      },
+      search() {
+        this.comments = this.comments.filter((item) => {
+          let reg = new RegExp(this.search_content);
+          return reg.test(item.content)
+        })
+      }
+    }
+  });
+</script>

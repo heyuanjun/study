@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let arr = [1, 2, 3, 4];
+  // 融合, 相当于拿走了
+  let arr1 = arr.splice(0);
+  console.log(arr, arr1);
+
+  // 截取并替换
+  arr1.splice(0, 3, 'he', 'yuan');
+  console.log(arr1);
+
+  // 从中间插入 arr1 ["he", "yuan", 4]
+  arr1.splice(1, 0, 'a', 'b', 'c'); // 相当于占了 下标1 的位置
+  console.log(arr1);
+</script>

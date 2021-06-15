@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <!--双大括号表示 mustache 语法-->
+  <h1 v-if="hdcms">我是 v-if</h1>
+  <!--v-show 性能较高，用于频繁的隐藏&显示 style="display: none;"-->
+  <h1 v-show="hdcms">我是 v-show</h1>
+  <br>
+  <input type="checkbox"
+    v-model="hdcms">
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      title: '贪',
+      hdcms: true
+    }
+  });
+</script>

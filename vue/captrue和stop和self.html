@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <div @click="box" :style="{border: '1px solid red', height: '50px', padding: '5px'}">
+    <!--prevent 避免默认事件（点击事件）-->
+    <a href="http://www.qidian.com" @click.prevent="link" :class="'line'">我是链接</a><br>
+    <!--停止冒泡 + 避免默认事件-->
+    <a href="http://www.qidian.com" @click.stop.prevent="link" :class="'line'">我是链接</a>
+  </div>
+  <!--通过设定自己为点击事件主体，阻止冒泡-->
+  <div @click.self="box" :style="{border: '1px solid blue', height: '50px', padding: '5px', margin: '10px 0 0 0'}">
+    <a href="http://www.qidian.com" @click.prevent="link" :class="'line'">我是链接</a>
+  </div>
+  <!--捕获事件，当有子级事件时，优先触发父级事件-->
+  <div @click.capture="box" :style="{border: '1px solid pink', height: '50px', padding: '5px', margin: '10px 0 0 0'}">
+    <a href="http://www.qidian.com" @click.prevent="link" :class="'line'">我是链接</a>
+  </div>
+</div>
+
+</body>
+</html>
+
+<style>
+  .line {
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+    },
+    methods: {
+      box() {
+        alert('陈平安')
+      },
+      link() {
+        alert('许七安')
+      }
+    }
+  });
+</script>

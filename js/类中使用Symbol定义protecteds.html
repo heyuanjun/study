@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  // 访问器就是对属性的操作通过函数进行
+  const protecteds = Symbol();
+  class Member {
+    constructor() {
+      this[protecteds] = {} // 用于定义多个参数
+      this[protecteds].host = '127.0.0.1';
+      this[protecteds].name = 'docker';
+    }
+
+    set host(url) {
+      if (!/^https/.test(url)) {
+        throw new Error('url 格式错误');
+      }
+      this[protecteds].host = url;
+    }
+
+    get host() {
+      return this[protecteds].host;
+    }
+
+    get name() {
+      return this[protecteds].name;
+    }
+
+  }
+
+  // 同 php 继承
+  class User extends Member {
+    constructor() {
+      super();
+    }
+  }
+
+  let hd = new User();
+  console.log(hd.host) // 127.0.0.1
+  hd.host = 'https://www.baidu.com'
+  console.log(hd.host) // https://www.baidu.com
+  console.log(hd.name) // 张学友
+</script>

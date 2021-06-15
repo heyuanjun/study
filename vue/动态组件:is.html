@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--根组件只有一个-->
+<div id="hdcms">
+  <div>
+    今日出动：
+    <br>
+    <!--is 可以用于任何容器！！！不能直接用于 template-->
+    <div :is="fighting"></div>
+    <input type="radio" v-model="fighting" value="ironman"> ironman
+    <input type="radio" v-model="fighting" value="batman"> batman
+  </div>
+</div>
+
+<template id="ironman">
+  <div>
+    <span>钢铁侠</span>
+  </div>
+</template>
+
+<template id="batman">
+  <div>
+    <span>蝙蝠侠</span>
+  </div>
+</template>
+
+</body>
+</html>
+
+<script>
+  // 子组件有多个，所以返回 data 方法，每一个都会实例化，是独立的
+  let batman = {
+    template: '#batman',
+    data() {
+      return {}
+    },
+  }
+  let ironman = {
+    template: '#ironman',
+    data() {
+      return {}
+    },
+  }
+  // 根组件只有一个，所以只返回一个 data 对象，因为只服务于一个组件
+  let app = new Vue({
+    el: '#hdcms',
+    components: {batman, ironman},
+    // 等同于
+    // components: {hdDiv: hdDiv},
+    data: {
+      fighting: 'batman'
+    }
+  });
+</script>

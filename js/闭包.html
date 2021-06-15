@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let temp = [
+    {
+      name: 'apple',
+      money: 100
+    },
+    {
+      name: 'banana',
+      money: 200
+    },
+    {
+      name: 'cherry',
+      money: 50
+    },
+    {
+      name: 'lemon',
+      money: 240
+    }
+  ]
+
+  console.log(temp.filter(between(50, 200)));
+
+  function between(a, b) {
+    return function (v) {
+      return a <= v.money && v.money <= b;
+    }
+  }
+
+  function test() {
+    return function (d) {
+      return d;
+    }
+  }
+
+  let a = test();
+  console.log(a(123))
+  // 123
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+
+    name: '张三',
+    age: 28,
+    color: 'red'
+  }
+
+  // 此时能够直接进行修改，例
+  obj.age = 33;
+  console.log(obj)
+  // age: 33
+  // color: "red"
+  // name: "张三"
+
+  // 添加访问器, 访问器的属性要高于普通属性！
+  const user = {
+    data: {
+      name: '张三',
+      age: 28,
+      color: 'red'
+    },
+    set age(value) {
+      if (18 > value) {
+        throw new Error('未成年');
+      }
+      this.data.age = value;
+    },
+    get age() {
+      return `${this.data.age} 岁`;
+    }
+  }
+
+  // 这样就可以直接添加判断，对访问进行限制
+  console.log(user.age = 19);
+  console.log(user.age)
+
+  let str1 = '这样，是的，我们，发现，明白，的士，一秒，个别，能量，让步，你好，浪涛，费用，掉落，半岛，分别，钟楼，时代，间隔，的士，小巧，诀别，窍门';
+  function getFirstStr(str) {
+    let arr = str1.split("，");
+    return  arr.reduce((pre, [k, v]) => pre + k, '');
+  }
+  console.log(getFirstStr(str1))
+
+  let six = {
+    color: 'black',
+    name: 'cat',
+    age: '7'
+  }
+
+  // 单个设置属性
+  six.color = 'white';
+
+  // 批量设置属性
+  let six1 = {
+    color: 'black',
+    name: 'cat',
+    age: '7',
+    set val(value) {
+      [this.color, this.name, this.age] = value.split(',');
+    }
+  }
+
+  let str = 'white,dog,3';
+  six1.val = str;
+  console.log(six1)
+</script>

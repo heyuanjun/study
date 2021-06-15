@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  class User {
+    #host = '127.0.0.1'; // 同 php private，不能被继承，只能在当前类使用
+    constructor(name) {
+      this.#check(name);
+      this.name = name;
+    }
+    set host(url) {
+      this.#host = url
+    }
+
+    get host() {
+      return this.#host
+    }
+
+    #check(name) {
+      if (typeof name !== 'string' || name.length <= 2) {
+        throw new Error('name 不符合规则')
+      }
+      console.log('fff')
+    }
+  }
+
+  let hd = new User('刘德华');
+  console.log(hd.host) // 127.0.0.1
+  // hd.#host = '8.8.8.8' // 无法修改
+  hd.host = '114.114.114.114'
+  console.log(hd.host) // 114.114.114.114
+  console.log(hd.name) // 刘德华
+  // console.log(hd.#check()) // 无法访问
+  let hd1 = new User('刘德'); // name 不符合规则
+  console.log(hd1)
+</script>

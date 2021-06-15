@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+    name: '张三',
+    age: 28,
+    money: 10000
+  }
+
+  console.log(Object.keys(obj))
+  // Array(3)
+  // 0: "name"
+  // 1: "age"
+  // 2: "money"
+
+  console.log(Object.values(obj))
+  // Array(3)
+  // 0: "张三"
+  // 1: 28
+  // 2: 10000
+
+  console.log(Object.entries(obj))
+  // Array(3)
+  // 0: (2) ["name", "张三"]
+  // 1: (2) ["age", 28]
+  // 2: (2) ["money", 10000]
+</script>

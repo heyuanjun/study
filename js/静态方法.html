@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  class Class {
+    constructor(...args) {
+      [this.name, this.age] = args;
+    }
+    static create(...args) {
+      return new this(...args)
+    } // 静态方法，定义到函数上
+    show() {
+      console.log('刘德华');
+    }
+  }
+
+  let hd = new Class();
+  hd.show()
+
+  let zxy = new Class('张学友', 20);
+  console.log(zxy) // Class {name: "张学友", age: 20}
+
+  // 静态方法简化创建对象
+  let ldh = Class.create('刘德华', 30);
+  console.log(ldh) // Class {name: "刘德华", age: 30}
+</script>

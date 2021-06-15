@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <!--双大括号表示 mustache 语法-->
+  <form action="" @submit="post($event)">
+    <h1>{{times}}</h1>
+    <button>提交</button>
+  </form>
+  <!--禁止默认事件，也就是禁止提交-->
+  <form action="" @submit.prevent="postA('test')">
+    <h1>{{times}}</h1>
+    <button>提交</button>
+  </form>
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      times: new Date(),
+    },
+    methods: {
+      post(event) {
+        event.preventDefault();
+        alert(event)
+      },
+      postA(a) {
+        alert(a)
+      }
+    }
+  });
+</script>

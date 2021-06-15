@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+  <link rel="stylesheet"
+    href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <form :style="{margin: '10px'}" @submit.stop.prevent="post1">
+    <div class="form-group">
+      <label>邮箱</label>
+      <input type="email"
+        class="form-control"
+        v-model="field.email"
+        placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label>内容</label>
+      <input type="text"
+        class="form-control"
+        v-model="field.content"
+        placeholder="Content">
+    </div>
+    <div class="form-group">
+      <label>反社会</label>
+      <input type="checkbox"
+        v-model="field.oneBox">
+    </div>
+    <div class="form-group">
+      <label>语言</label>
+      <template v-for="v in languages">
+        <label>
+          <input type="radio"
+            v-model="field.language"
+            :value="v.value">
+          {{v.name}}
+        </label>&nbsp;
+      </template>
+    </div>
+    <div class="form-group">
+      <label>文章</label>
+      <select v-model="field.article">
+        <option v-for="v in articles" :value="v.id">{{v.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>小说</label>
+      <select v-model="field.article1" multiple>
+        <option v-for="v in articles" :value="v.id">{{v.name}}</option>
+      </select>
+    </div>
+    <div class="checkbox">
+      <template v-for="v in ball">
+        <label>
+          <input type="checkbox"
+            v-model="field.ball"
+            :value="v.value">
+          {{v.name}}
+        </label>&nbsp;
+      </template>
+    </div>
+    <button type="submit"
+      class="btn btn-default">提交
+    </button>
+  </form>
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      articles: [
+        {id: 1, name: '剑来'},
+        {id: 2, name: '雪中悍刀行'},
+        {id: 3, name: '大奉打更人'}
+      ],
+      languages: [
+        {id: 1, name: '中文', value: 'cn'},
+        {id: 2, name: '英文', value: 'en'},
+        {id: 3, name: '日文', value: 'jp'},
+        {id: 4, name: '文', value: 'w'}
+      ],
+      ball: [
+        {id: 1, name: '篮球', value: 'cn'},
+        {id: 2, name: '足球', value: 'en'},
+        {id: 3, name: '日文羽毛球', value: 'jp'},
+      ],
+      field: {
+        title: '我是标题',
+        email: '2222@qq.com',
+        oneBox: false,
+        ball: [],
+        language: 'en',
+        article: 2,
+        article1: [1]
+      }
+    },
+    methods: {
+      post1() {
+        console.log(this.field)
+      }
+    }
+  });
+</script>

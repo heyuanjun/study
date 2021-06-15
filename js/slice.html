@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let arr = [1, 2, 3, 4];
+  let arr1 = arr;
+  let arr2 = arr.slice(0);
+  console.log(arr, arr1, arr2);
+
+  // slice 是复制一个，并不会改变
+  arr2[1] = 'a';
+
+  console.log(arr, arr1, arr2);
+
+  // 因为数组是传址，同一个指向
+  arr1[1] = 'a';
+  console.log(arr, arr1, arr2);
+
+  // 截取
+  console.log(arr2.slice(0, arr2.length));
+</script>

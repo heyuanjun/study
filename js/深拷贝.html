@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let obj = {
+    name: '张三',
+    show: {
+      money: 1000
+    },
+  }
+
+  console.log(Object.entries(obj)) // 就是返回一个二维数组，将每次遍利的属性和值，做为一维数组
+
+  let obj1 = {}
+  obj1.name = obj.name;
+  obj1.show = obj.show;
+  obj1.show.money = 500;
+  console.log(obj1) // name: "张三" show: money: 500
+  console.log(obj) // name: "张三" show: money: 500
+  // 都会被改变，因为单个数组或对象赋值时，之前说过，只会提供内存地址的指向
+
+  // 深拷贝就是一层一层的深层次拷贝
+  function copy(obj) {
+    let res = obj instanceof Object ? {} : [];
+    for (const [k, v] of Object.entries(obj)) {
+      res[k] = typeof v === 'object' ? copy(v) : v;
+    }
+    return res;
+  }
+
+  console.log('******')
+  const a = {name: 'cricle'};
+  a.res = a;
+  const obj3 = {a}
+  console.log(obj3)
+  // let obj2 = copy(obj);
+  // obj2.show.money = 9000;
+  console.log(obj)
+  console.log(obj2)
+  console.log('******')
+</script>

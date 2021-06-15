@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  // 永不重复的字符串
+  let a = Symbol();
+  let b = Symbol();
+  console.log(a, b)
+  // Symbol() Symbol()
+
+  // 可以添加描述
+  let c = Symbol('php');
+  let d = Symbol('js');
+  console.log(c, d);
+  // Symbol(php) Symbol(js)
+
+  // 获取描述
+  console.log(c.description)
+  // php
+
+  // 全局定义，重复申明也只会定义一个
+  let e = Symbol.for('angular');
+  console.log(Symbol.keyFor(e))
+  // angular
+
+  // 缓存中使用
+  let carts = {
+    name: 'apple',
+    key: Symbol(),
+    money: 100
+  }
+
+  let carts1 = {
+    name: 'orange',
+    key: Symbol(),
+    money: 1000
+  }
+
+  Cache.set(carts.key, carts);
+  Cache.set(carts1.key, carts1);
+  console.log(Cache.get(carts.key));
+  console.log(Cache.get(carts1.key));
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <div @click="box" :style="{border: '1px solid red', height: '50px', padding: '5px'}">
+    <!--prevent 避免默认事件（点击事件）-->
+    <!--once 只触发一次，一次以后绑定的 @click 事件失效-->
+    <a href="http://www.qidian.com" @click.prevent.once="link" :class="'line'">我是链接</a><br>
+  </div>
+</div>
+
+</body>
+</html>
+
+<style>
+  .line {
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+    },
+    methods: {
+      box() {
+        alert('陈平安')
+      },
+      link() {
+        alert('许七安')
+      }
+    }
+  });
+</script>

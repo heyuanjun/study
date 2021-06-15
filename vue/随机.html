@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--根组件只有一个-->
+<div id="hdcms">
+  <div class="box">
+    <div v-for="v in foods" :class="curBack">{{v.name}}</div>
+  </div>
+  <button @click="getFood">Start</button>
+</div>
+
+</body>
+</html>
+
+<style>
+  .box {
+    display: grid;
+    width: 300px;
+    height: 300px;
+    border: 1px solid hotpink;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    line-height: 100px;
+    background: hotpink;
+    color: white;
+    padding: 10px;
+  }
+  .box div {
+    border: 1px solid white;
+  }
+  .tiffany {
+    background: #95ecd0;
+  }
+</style>
+
+<script>
+  // 子组件有多个，所以返回 data 方法，每一个都会实例化，是独立的
+  let batman = {
+    template: '#batman',
+    data() {
+      return {}
+    },
+  }
+  // 根组件只有一个，所以只返回一个 data 对象，因为只服务于一个组件
+  let app = new Vue({
+    el: '#hdcms',
+    components: {batman},
+    data: {
+      foods: [
+        {name: '人民食堂', value: '1'},
+        {name: '牛排', value: '2'},
+        {name: '协冒森', value: '3'},
+        {name: '1', value: '4'},
+        {name: '2', value: '5'},
+        {name: '3', value: '6'},
+        {name: '4', value: '7'},
+        {name: '5', value: '8'},
+        {name: '6', value: '9'},
+      ],
+      curBack: 'tiffany'
+    },
+    methods: {
+      getFood() {
+        let random = Math.ceil(Math.random() * 50);
+        setInterval(function () {
+
+        }, 1000)
+        console.log(random)
+      }
+    }
+  });
+</script>

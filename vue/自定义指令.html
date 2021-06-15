@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <input type="text"
+    v-model="title"
+    v-star="title"
+    v-up="title"
+    v-good="title">
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      title: '浮萍'
+    },
+    directives: {
+      // 绑定指令, 只触发一次
+      star: {
+        bind(el, bind) {
+          console.log(bind)
+          el.style.color = 'red'
+        }
+      },
+      // 更新指令，每次更新都要触发
+      up: {
+        update(el, bind) {
+          console.log(bind)
+        }
+      },
+      // 简写，绑定 + 更新
+      good(el, bind) {
+        console.log(bind)
+      }
+    }
+  });
+</script>

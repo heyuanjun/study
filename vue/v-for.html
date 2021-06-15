@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <table border="1">
+    <thead>
+    <tr>
+      <th>序号</th>
+      <th>标题</th>
+      <th>内容</th>
+      <th>职业</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--循环数组-->
+    <tr v-for="(v, k) of news">
+      <td>{{k++}}</td>
+      <td>{{v.name}}</td>
+      <td>{{v.age}}</td>
+      <td>{{title}}</td>
+    </tr>
+    <!--循环对象, index 为下标-->
+    <tr v-for="(v, k, index) of news2">
+      <td>{{index}}</td>
+      <td>{{k}}</td>
+      <td>{{v}}</td>
+      <td>{{title}}</td>
+    </tr>
+    <!--循环数值 5-->
+    <tr v-for="v of 3">
+      <td>{{v}}</td>
+      <td>{{v}}</td>
+      <td>{{v}}</td>
+      <td>{{v}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      title: '歌手',
+      news: [
+        {name: 'jay', age: 30},
+        {name: 'jj', age: 30},
+        {name: 'dt', age: 30},
+        {name: 'join', age: 30},
+        {name: 'just', age: 30},
+        {name: 'edc', age: 30},
+      ],
+      news2: {
+        name: 'cc',
+        age: 30
+      }
+    }
+  });
+</script>

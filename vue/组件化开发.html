@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--根组件只有一个-->
+<div id="hdcms">
+  <!--子组件-->
+  <hd-side></hd-side>
+  <hd-side></hd-side>
+  <hd-div></hd-div>
+</div>
+
+</body>
+</html>
+
+<script>
+  // Vue 类来声明全局组件，需在根组件之前定义
+  let hdEl = '<span>我是 span 模块</span>'
+  Vue.component('hdSide', {
+    template: hdEl
+  })
+
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  // 局部组件（子）
+  let hdDiv = {
+    template: '<div>我是 div 模块</div>'
+  }
+  // 根组件只有一个，所以只返回一个 data 对象，因为只服务于一个组件
+  let app = new Vue({
+    el: '#hdcms',
+    components: {hdDiv},
+    // 等同于
+    // components: {hdDiv: hdDiv},
+    data: {
+    }
+  });
+</script>

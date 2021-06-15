@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--根组件只有一个-->
+<div id="hdcms">
+  <hd-div :goods="goods">
+    <!--使用 scope 接收数据, 并在父组件中自定义子组件的式样-->
+    <template scope="v">
+      <li v-for="vv in v">
+        <span :style="{fontSize: '19px'}">{{vv.name}}</span>
+        <span :style="{color: 'pink'}">{{vv.price}}</span>
+      </li>
+    </template>
+  </hd-div>
+  <br>
+</div>
+
+<template id="hdDiv">
+  <div>
+    <slot v-for="good in goods" :field="good"></slot>
+
+  </div>
+</template>
+
+</body>
+</html>
+
+<script>
+  // 子组件有多个，所以返回 data 方法，每一个都会实例化，是独立的
+  let hdDiv = {
+    template: '#hdDiv',
+    props: ['goods'],
+    data() {
+      return {}
+    },
+  }
+  // 根组件只有一个，所以只返回一个 data 对象，因为只服务于一个组件
+  let app = new Vue({
+    el: '#hdcms',
+    components: {hdDiv},
+    // 等同于
+    // components: {hdDiv: hdDiv},
+    data: {
+      goods: [
+        {name: 'iphone', price: 100},
+        {name: 'switch', price: 200},
+        {name: 'ps5', price: 300},
+      ]
+    }
+  });
+</script>

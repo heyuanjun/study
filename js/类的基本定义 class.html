@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  // 声明类的方式
+  class User {} // 1
+  // let hd = class {} // 2
+
+  // 使用类的方式更清晰，可以看作构造函数的升级
+  // 类其实就是函数的语法糖结构
+  class Singer {
+    constructor(...args) {
+      [this.name, this.age] = args
+    }
+    // 类中的方法会自动添加至 Singer.prototype 中
+    show() {
+
+    }
+    get() {
+      console.log('jay')
+    }
+  }
+
+  let hd = new Singer('刘德华', 30);
+  hd.get()
+  console.dir(Singer) // constructor: class Singer / get: ƒ get() / show: ƒ show()
+  console.log(hd.name) // 刘德华
+  console.log(hd.age) // 30
+
+  // 普通函数实现
+  function Singer1(...args) {
+    [this.name, this.age] = args;
+    this.get = function () {
+      console.log('jay1')
+    }
+  }
+  let hd1 = new Singer1('张学友', 31);
+  hd1.get()
+  console.log(hd1.name) // 张学友
+  console.log(hd1.age) // 31
+</script>

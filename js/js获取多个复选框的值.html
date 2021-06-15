@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="checkbox" name="box" value="1">
+<input type="checkbox" name="box" value="2">
+<input type="checkbox" name="box" value="3">
+<input type="checkbox" name="box" value="4">
+<input type="button" onclick="getCheckBox()">
+</body>
+</html>
+
+<script>
+  function getCheckBox() {
+    let els = document.getElementsByName('box');
+    let arr = [];
+    [...els].filter(item=> item.checked === true ? arr.push(item.value) : '');
+    alert(arr)
+  }
+</script>

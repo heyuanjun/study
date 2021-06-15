@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  function User(url) {
+    this.url = url;
+  }
+
+  let hd = new User('www.baidu.com');
+  console.log(hd.url) // www.baidu.com
+  hd.url = 'www.google.com';
+  console.log(hd.url) // www.google.com
+
+  User.url = 'www.91.com'
+  console.log(hd.url) // www.google.com
+  console.log(User.url) // www.91.com 静态属性
+
+  // 类的静态属性
+  class Admin {
+    url = 'www.hot.com';
+    static url1 = 'www.91.com'; // 共用的属性可以定义为静态属性
+  }
+
+  let ad1 = new Admin();
+  let ad2 = new Admin();
+  console.log(ad1.url) // www.hot.com
+  console.log(ad2.url) // www.hot.com
+  ad1.url = 'www.ab.com';
+  console.log(ad1.url) // www.ab.com
+  console.log(ad2.url) // www.hot.com
+
+  console.log(Admin.url1) // 直接通过对象方式来调用
+</script>

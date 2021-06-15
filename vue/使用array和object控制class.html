@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+
+<style>
+  .red {
+    color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .yellow {
+    color: yellow;
+  }
+</style>
+
+<body>
+
+<!--具体控制的区域-->
+<div id="hdcms">
+  <!--双大括号表示 mustache 语法-->
+  <h1 :class="red">{{title}}</h1>
+  <h1 :class="green">{{title}}</h1>
+  <h1 :class="yellow">{{title}}</h1>
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      red: 'red',
+      green: {
+        green: true
+      },
+      yellow: [
+        {
+          yellow: true
+        }
+      ],
+      title: '我是标题'
+    }
+  });
+
+</script>

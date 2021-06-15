@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+<!--根组件只有一个-->
+<div id="hdcms">
+  <!--子组件默认插槽-->
+  <hd-div>默认插槽</hd-div>
+  <br>
+  <!--slot 插槽就是在调用子组件的时候，将内容从组件中间插入-->
+  <!--并由 slot 将内容指定到具体位置-->
+  <hd-div1>
+    <title slot="title">我是h1</title>
+    <textarea slot="content">请输入内容</textarea>
+    <hd-div2 slot="div2"></hd-div2>
+    <h3 slot="div2">div2</h3>
+  </hd-div1>
+  <br>
+</div>
+
+<template id="hdDiv">
+  <div>
+    <slot></slot>
+  </div>
+</template>
+
+<template id="hdDiv1">
+  <div>
+    <slot name="content"></slot>
+    <slot name="title"></slot>
+    <slot name="div2"></slot>
+  </div>
+</template>
+
+<template id="hdDiv2">
+  <div>
+    <span>slot 子组件</span>
+  </div>
+</template>
+
+</body>
+</html>
+
+<script>
+  // Vue 类来声明全局组件，需在根组件之前定义
+  let hdEl = '<span>我是 span 模块</span>'
+  Vue.component('hdSide', {
+    template: hdEl
+  })
+
+  // 子组件有多个，所以返回 data 方法，每一个都会实例化，是独立的
+  let hdDiv = {
+    template: '#hdDiv',
+    props: {},
+    data() {
+      return {}
+    },
+  }
+  let hdDiv1 = {
+    template: '#hdDiv1',
+    props: {},
+    data() {
+      return {}
+    },
+  }
+  let hdDiv2 = {
+    template: '#hdDiv2',
+    props: {},
+    data() {
+      return {}
+    },
+  }
+  // 根组件只有一个，所以只返回一个 data 对象，因为只服务于一个组件
+  let app = new Vue({
+    el: '#hdcms',
+    components: {hdDiv, hdDiv1, hdDiv2},
+    // 等同于
+    // components: {hdDiv: hdDiv},
+    data: {}
+  });
+</script>

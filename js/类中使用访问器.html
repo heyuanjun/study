@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  // 访问器就是对属性的操作通过函数进行
+  const NAME = Symbol();
+  class User {
+    constructor(url, name = '张学友') {
+      this._host = url; // 内部约定 _开头为私有属性，使用访问器进行修改
+      this[NAME] = name; // 定义为唯一值
+    }
+
+    set host(url) {
+      if (!/^https/.test(url)) {
+        throw new Error('url 格式错误');
+      }
+      this._host = url;
+    }
+
+    get host() {
+      return this._host;
+    }
+
+    get name() {
+      return this[NAME];
+    }
+  }
+
+  let hd = new User('https://www.baidu.com');
+  hd.host = 'https://www.baidu.com';
+  console.log(hd.host) // https://www.baidu.com
+  console.log(hd.name) // 张学友
+</script>

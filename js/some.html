@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let arr = [
+    {
+      name: '张三',
+      height: 100
+    },
+    {
+      name: '李四',
+      height: 20
+    },
+    {
+      name: '王二',
+      height: 30
+    },
+    {
+      name: '鲁一',
+      height: 40
+    },
+  ]
+
+  // 只要一个满足
+  res = arr.some(function (item) {
+    return item.height >= 190;
+  });
+
+  console.log(res);
+</script>

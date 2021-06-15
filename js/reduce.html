@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  let arr = [1, 2, 2, 3, 4, 3, 5, 3, 2, 2, 2, 2, 99];
+  // 统计 2 出现的次数, pre 表示默认为 0，每次返回是前一次的结果
+  let total = arr.reduce((pre, cur) => {
+    return pre += cur === 2 ? 1 : 0;
+  }, 0)
+
+  console.log(total);
+
+  // 累加全部
+  let total1 = arr.reduce((pre, cur) => {
+    return pre += cur;
+  }, 0);
+  console.log(total1);
+
+  // 获取最大值
+  let total2 = arr.reduce((pre, cur) => pre > cur ? pre : cur)
+  console.log(total2);
+</script>

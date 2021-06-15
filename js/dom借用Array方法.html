@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div>
+  <input type="text"
+    data-title="jay">
+  <input type="text">
+  <input type="text">
+  <input type="text"
+    data-title="jj">
+</div>
+
+</body>
+</html>
+
+<script>
+  console.dir([])
+
+  // 获取有 data-title 的元素，方法一
+  let domList = document.querySelectorAll("[type]");
+  console.log(domList)
+  let res = [...domList].filter(item => {
+    return item.hasAttribute("data-title");
+  })
+  console.log(res)
+
+  // 方法二
+  let arr = ['1', '3', '33', 1];
+  console.log(arr.filter.call(['3', '22'], item => {
+    console.log(item)
+  }))
+  // call 改变了 this 指向，此时循环的是 ['3', '22']，所以得出以下结论
+  res = [].filter.call(domList, item => {
+    return item.hasAttribute("data-title");
+  })
+  console.log(res)
+</script>

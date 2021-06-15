@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+  <script src="vuex.js"></script>
+  <script src="vue-router.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <router-link :to="{name: 'Header'}">我是标题</router-link>
+  <br>
+  <router-link :to="{name: 'Content'}">我是内容</router-link>
+  <br>
+  <router-link :to="{name: 'Footer', params: { id: 123 }}">我是底部</router-link>
+  <br>
+  <router-link :to="{name: 'Goods'}">我是食物</router-link>
+  <br>
+  <router-view></router-view>
+  <router-view
+    :style="{display: 'block', background: 'hotpink', width: '200px', height: '200px'}"
+    name="div1"></router-view>
+  <router-view
+    :style="{display: 'block', background: 'blue', width: '200px', height: '200px'}"
+    name="div2"></router-view>
+</div>
+
+</body>
+</html>
+
+<script>
+  let routes = [
+    {
+      path: '/content',
+      name: 'Content',
+      components: {
+        default: {
+          template: '<span>Content</span>'
+        },
+        div1: {
+          template: '<span>div1</span>'
+        },
+        div2: {
+          template: '<span>div2</span>'
+        },
+      }
+    },
+    {
+      path: '/header',
+      name: 'Header',
+      component: {
+        template: '<div>我是header</div>'
+      }
+    },
+    {
+      // 路由传参 /footer/123
+      path: '/footer/:id',
+      name: 'Footer',
+      component: {
+        template: '<div>User {{ $route.params.id }}</div>'
+      }
+    },
+    {
+      // 路由正则匹配
+      path: '/goods/:id(\\d+)',
+      name: 'Goods',
+      component: {
+        template: '<div>User {{ $route.params.id }}</div>'
+      }
+    },
+  ];
+  let router = new VueRouter({model: 'history', routes});
+  let app = new Vue({
+    el: '#hdcms',
+    router,
+    data: {},
+    components: {}
+  });
+</script>

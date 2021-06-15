@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+  <script src="../node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<!--具体控制的区域-->
+<div id="hdcms">
+  <!--双大括号表示 mustache 语法-->
+  <input type="text" v-model="title">
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    watch: {
+      title: _.debounce(function (newV, oldV) {
+        console.log(oldV, '=>', newV + '(3秒)')
+      }, 3000) // 3 秒后打印
+    },
+    data: {
+      title: '贪'
+    }
+  });
+
+  app.title = '贫'
+</script>

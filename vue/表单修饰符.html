@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./vue.js"></script>
+  <link rel="stylesheet"
+    href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--修饰符就是二次处理的意思-->
+<div id="hdcms">
+  <form :style="{margin: '10px'}" @submit.stop.prevent="post1">
+    <div class="form-group">
+      <label>邮箱</label>
+      <!-- trim 修饰符，去除两边多余的空格-->
+      <!-- lazy 懒加载，出入后不会立即检测，点击其他区域才继续执行-->
+      <input type="email"
+        class="form-control"
+        v-model.trim.lazy="field.email"
+        placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label>电话</label>
+      <!-- number 修饰符，转化为数字，默认 html 所有的都是字符串-->
+      <input type="number"
+        class="form-control"
+        v-model.number="field.tel"
+        placeholder="tel">
+    </div>
+    <button type="submit"
+      class="btn btn-default">提交
+    </button>
+  </form>
+</div>
+
+</body>
+</html>
+
+<script>
+  // jquery 是对原生 js 和 dom 操作的封装 ，vue 是以数据驱动
+  let app = new Vue({
+    el: '#hdcms',
+    data: {
+      articles: [
+        {id: 1, name: '剑来'},
+        {id: 2, name: '雪中悍刀行'},
+        {id: 3, name: '大奉打更人'}
+      ],
+      field: {
+        title: '我是标题',
+        email: '2222@qq.com',
+        tel: '',
+      }
+    },
+    methods: {
+      post1() {
+        console.log(this.field)
+      }
+    }
+  });
+</script>
