@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
 </head>
 <body>
-$END$
+<div class="container">
+  <div class="main">
+    <h2>33333</h2>
+    <span>我是span</span>
+  </div>
+  <div class="left">
+    <h2>fffff</h2>
+    <span>我是span</span>
+  </div>
+  <div class="right">
+    <h2>22r2r2</h2>
+    <span>我是span</span>
+  </div>
+</div>
 </body>
 </html>
+
+<style>
+  .container {
+    padding-left: 150px;
+    padding-right: 190px;
+  }
+  .main {
+    float: left;
+    width: 100%;
+  }
+  .left {
+    float: left;
+    width: 190px;
+    margin-left: -100%;
+    position: relative;
+    left: -150px;
+  }
+  .right {
+    float: left;
+    width: 190px;
+    margin-left: -190px;
+    position: relative;
+    right: -190px;
+  }
+</style>

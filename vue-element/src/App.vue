@@ -11,6 +11,10 @@
     <router-link :to="{name: 'Layout'}">
       Layout 布局组件
     </router-link>
+    <br>
+    <router-link :to="{name: 'Container'}">
+      Container 容器组件
+    </router-link>
     <router-view/>
   </div>
 </template>
