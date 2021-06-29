@@ -15,6 +15,14 @@
     <router-link :to="{name: 'Container'}">
       Container 容器组件
     </router-link>
+    <br>
+    <router-link :to="{name: 'Radio'}">
+      单选按钮 组件
+    </router-link>
+    <br>
+    <router-link :to="{name: 'Checkbox'}">
+      复选框 组件
+    </router-link>
     <router-view/>
   </div>
 </template>
