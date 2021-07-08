@@ -23,13 +23,28 @@
     <router-link :to="{name: 'Checkbox'}">
       复选框 组件
     </router-link>
+    <br>
+    <a id='idMsg' @click="msg='hello world'">点我测试{{msg}}</a>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      msg: '我是 msg'
+    }
+  },
+  beforeUpdate() {
+    console.log(this.msg)
+    console.log(document.getElementById('idMsg').innerText)
+  },
+  updated() {
+    console.log(this.msg)
+    console.log(document.getElementById('idMsg').innerText)
+  }
 }
 </script>
 
