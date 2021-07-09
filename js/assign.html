@@ -14,6 +14,11 @@
 
   let b = {money: 1000}
 
+  // 浅拷贝
+  let c = Object.assign(a)
+
   // 合并对象, 后面的会覆盖前面的
   console.log(Object.assign(a, b))
+  console.log('************************')
+  console.log(Object.assign(c))
 </script>

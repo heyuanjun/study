@@ -2,9 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
 </head>
 <body>
-$END$
+  <div style="border: 1px solid hotpink;width: 300px;height: 300px" class="base">
+    <div style="border: 1px solid skyblue;width: 100px;height: 100px" class="child">
+
+    </div>
+  </div>
 </body>
 </html>
+
+<!--flex 1-->
+<!--<style>-->
+<!--  .base {-->
+<!--    display: flex;-->
+<!--    justify-content: center;-->
+<!--    align-items: center;-->
+<!--  }-->
+<!--</style>-->
+
+<!--flex 2-->
+<!--<style>-->
+<!--  .base {-->
+<!--    display: flex;-->
+<!--    justify-content: center;-->
+<!--  }-->
+<!--  .child {-->
+<!--    align-self: center;-->
+<!--  }-->
+<!--</style>-->
+
+<!--定位-->
+<!--<style>-->
+<!--  .base {-->
+<!--    position: relative;-->
+<!--  }-->
+
+<!--  .child {-->
+<!--    position: absolute;-->
+<!--    top: 50%;-->
+<!--    left: 50%;-->
+<!--    /*左右 & 上下*/-->
+<!--    transform: translate(-50%, 50%);-->
+<!--  }-->
+<!--</style>-->
+
+<!--定位2-->
+<!--<style>-->
+<!--  .base {-->
+<!--    position: relative;-->
+<!--  }-->
+
+<!--  .child {-->
+<!--    position: absolute;-->
+<!--    top: 50%;-->
+<!--    left: 50%;-->
+<!--    /**-->
+<!--     * 减去自身的一半-->
+<!--     */-->
+<!--    margin-left: -50px;-->
+<!--    margin-top: -50px;-->
+<!--  }-->
+<!--</style>-->
+
+<!--脱离文档流-->
+<style>
+  .base {
+    position: relative;
+  }
+
+  .child {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+</style>

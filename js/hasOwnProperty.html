@@ -13,17 +13,21 @@
   let obj = {
     name: '张三',
     age: '27',
-    money: 1000
+    money: 1000,
+    hobby: {
+      like: '篮球'
+    }
   }
 
   Object.prototype.color = function () {
     return 'black'
   }
 
-  console.log(obj)
+  // console.log(obj)
   // 只检测当前对象是否存在该属性
-  console.log(obj.hasOwnProperty('name')) // true
-  console.log(obj.hasOwnProperty('color')) // false
-  console.log('name' in obj) // true in 会检测对象和原型对象上的属性
-  console.log('color' in obj) // true in 会检测对象和原型对象上的属性
+  // console.log(obj.hasOwnProperty('name')) // true
+  // console.log(obj.hasOwnProperty('color')) // false
+  console.log(!(typeof(obj.hobby.like) == "undefined")) // 检测对象是否存在某个属性（类似 isset 的作用）
+  // console.log('name' in obj) // true in 会检测对象和原型对象上的属性
+  // console.log('color' in obj) // true in 会检测对象和原型对象上的属性
 </script>
