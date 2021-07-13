@@ -12,10 +12,14 @@
 <script>
   let arr = [1, 2, 3, 4, 2];
   console.log(arr.indexOf(3)); // 2
+  // console.log(arr.findIndex(item => item === 3)); // 2
   console.log(arr.lastIndexOf(2)); // 4 取的是数组的下标
-  console.log(arr.lastIndexOf(9)); // -1
-  console.log(arr.lastIndexOf(7)); // -1
+  // console.log(arr.lastIndexOf(9)); // -1
+  // console.log(arr.lastIndexOf(7)); // -1
+  // 如果要判断数组中的值是否重复，可以如下写
+  console.log(arr.indexOf(1) === arr.lastIndexOf(1))
 
-  console.log(arr.includes(3)); // true
-  console.log(arr.includes(7)); // false
+  // 如果想直接检测数组中是否有某值，可以直接如下判断
+  // console.log(arr.includes(3)); // true
+  // console.log(arr.includes(7)); // false
 </script>

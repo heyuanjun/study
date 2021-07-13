@@ -27,7 +27,9 @@
   // 只检测当前对象是否存在该属性
   // console.log(obj.hasOwnProperty('name')) // true
   // console.log(obj.hasOwnProperty('color')) // false
+  // typeof 是向下检测
   console.log(!(typeof(obj.hobby.like) == "undefined")) // 检测对象是否存在某个属性（类似 isset 的作用）
+  // in 是向上检测
   // console.log('name' in obj) // true in 会检测对象和原型对象上的属性
   // console.log('color' in obj) // true in 会检测对象和原型对象上的属性
 </script>
