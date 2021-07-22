@@ -14,11 +14,23 @@
 
   let b = {money: 1000}
 
+  // 普通变量是直接传值
+  // let d = 'dd'
+  // let e = d
+  // d = 'ddddd'
+  // console.log(d) // ddddd
+  // console.log(e) // dd
+
   // 浅拷贝
   let c = Object.assign(a)
+
+  a.name = 'c'
 
   // 合并对象, 后面的会覆盖前面的
   console.log(Object.assign(a, b))
   console.log('************************')
+
+  // 此时指向的是同一个内存地址，因为对象是一个复杂的存储类型，传祉
+  console.log(c)
   console.log((a === c)) // true
 </script>

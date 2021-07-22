@@ -17,6 +17,14 @@
     },
   }
 
+  console.log('************* objCopy start **************')
+  let objCopy = JSON.parse(JSON.stringify(obj))
+  console.log(objCopy)
+  obj.name = '我是新张三'
+  console.log(obj)
+  console.log(objCopy) // 此时 objCopy 已经没有任何改变，完成了深拷贝
+  console.log('************* objCopy start **************')
+
   console.log(Object.entries(obj)) // 就是返回一个二维数组，将每次遍利的属性和值，做为一维数组
 
   let obj1 = {}
