@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+  function Person(name, age) {
+    this.name = name;
+    this.age = age
+  }
+  function New() {
+    var constr = Array.prototype.shift.call(arguments);
+    console.log(constr)
+    var obj = Object.create(constr.prototype);
+    var result = constr.apply(obj, arguments);
+    return result instanceof Object ? result : obj;
+  }
+
+  var person = new New(Person, 'Nicholas', 29, 'Front-end developer');
+
+  console.log(person.name) // Nicholas
+  console.log(person.__proto__ === Person.prototype);   // true
+
+  // var a = 10;
+  // (function () {
+  //   console.log(a);
+  //   a = 5;
+  //   console.log(window.a);
+  //   var a = 20;
+  //   console.log(a);
+  // })()
+
+  // undefined 10 20
+
+   // console.log([1,2,3].map(parseInt))
+
+  // var a = {n: 1};
+  // var b = a; // b = {n: 1}
+  // a.x = a = {n: 2}; // b = {n: 2}
+  // console.log(a.x) // undefined
+  // console.log(b.x) // b.x = {n: 2}
+  // 1.首先执行浅拷贝， b = {n: 1}
+  // 2.然后执行 a.x = undefined
+  // 3.a = {n: 2},新的内存指向（简称X），此时 b = {n:1, x:undefined}
+  // 4.a.x = {n: 2}, 前对象也就是 b.x = {n: 2}
+  // 5.X.x 还未赋值，找不到，所以 = undefined
+
+  // const promise = new Promise((resolve, reject) => {
+  //   console.log(1);
+  //   resolve();
+  //   console.log(2);
+  // })
+  // promise.then(() => {
+  //   console.log(3)
+  // });
+  // console.log(4)
+
+  // 1 2 4 3
+</script>
